@@ -2,18 +2,18 @@ def merge_sort(array)
   # base case is when array only has 1 item
   return array if array.length == 1
 
+  # separate into left and right arrays
   mid_position = array.length / 2
   array_left = array[0..(mid_position - 1)]
   array_right = array[mid_position..(array.length - 1)]
   array_left = merge_sort(array_left)
   array_right = merge_sort(array_right)
 
+  # merge left and right arrays
   new_array = []
   loop do
     break if array_left.empty? && array_right.empty?
 
-    # p array_left
-    # p array_right
     if array_right.empty?
       new_array += array_left
       array_left = []
