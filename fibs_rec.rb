@@ -1,8 +1,6 @@
 # normal iteration for fibonacci sequence
 def fibs(length)
-  fibs_array = []
-  fibs_array.push(0) if length >= 1
-  fibs_array.push(1) if length >= 2
+  fibs_array = length <= 1 ? [0] : [0, 1]
 
   i = 2 # 3rd index position
   while i <= length - 1
@@ -14,22 +12,16 @@ end
 
 # recursive for fibonacci sequence
 def fibs_rec(length)
-  return length if length < 2
+  puts "This was printed recursively"
+  fibs_array = []
+  return [0, 1] if length == 2
+  return [0] if length <= 1
 
-  fibs_rec(length - 1) + fibs_rec(length - 2)
+  fibs_array += fibs_rec(length - 1) # + fibs_rec(length - 2)
+
+  fibs_array.push(fibs_array[fibs_array.length - 1] + fibs_array[fibs_array.length - 2])
 end
 
-def fibs_print(length)
-  # output = []
-  output = (0..length).map { |i| fibs_rec(i) }
-end
-
-puts "Loop"
-p fibs(0)
-p fibs(1)
-p fibs(8)
-
-puts "\nRecursive"
-p fibs_print(0)
-p fibs_print(1)
-p fibs_print(8)
+puts "\nBy using loop, #{fibs(9)}"
+puts "\n"
+puts "By using recursive, #{fibs_rec(9)}"
